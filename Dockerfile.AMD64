@@ -1,0 +1,6 @@
+FROM nginx
+
+COPY tmp/qemu-arm-static usr/bin
+
+COPY dist /usr/share/nginx/html
+

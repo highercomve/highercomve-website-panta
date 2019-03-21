@@ -1,0 +1,6 @@
+FROM arm32v6/nginx:1.15.9-alpine
+
+COPY tmp/qemu-arm-static usr/bin
+
+COPY dist /usr/share/nginx/html
+
