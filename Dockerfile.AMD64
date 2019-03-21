@@ -1,6 +1,5 @@
 FROM nginx
 
-COPY tmp/qemu-arm-static usr/bin
 COPY nginx /etc/init.d/nginx
 RUN chmod 755 /etc/init.d/nginx
 RUN apk update
