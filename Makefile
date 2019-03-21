@@ -10,8 +10,7 @@ QUIET = @
 endif
 
 build:
-	git clone git@github.com:highercomve/highercomve.github.io.git dist;
-	docker build -f Dockerfile.$(CONTAINER_VERSION) --no-cache -t $(CONTAINER_NAME):$(CONTAINER_VERSION) .
+	git clone git@github.com:highercomve/highercomve.github.io.git dist; docker build -f Dockerfile.$(CONTAINER_VERSION) --no-cache -t $(CONTAINER_NAME):$(CONTAINER_VERSION) .
 
 export: build
 	$(QUIET)docker rm -f $(CONTAINER_NAME) || true; did=`docker run --name $(CONTAINER_NAME) -t -d -p 80:80 $(CONTAINER_NAME):$(CONTAINER_VERSION)`; docker export $$did -o $(EXPORT_PATH)
