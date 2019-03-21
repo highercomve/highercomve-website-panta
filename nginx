@@ -1,0 +1,19 @@
+#!/sbin/openrc-run
+
+depend() {
+        before netmount nfsmount
+        use net
+}
+
+start() {
+        ebegin "Starting nginx"
+        /sbin/start-stop-daemon -b --exec /usr/sbin/nginx --start -m --pidfile /run/nginx.pid
+        eend $?
+}
+
+stop() {
+        ebegin "Stopping nginx"
+        kill -TERM -`cat /run/nginx.pid`
+        rm -f /run/nginx.pid
+        eend $?
+}

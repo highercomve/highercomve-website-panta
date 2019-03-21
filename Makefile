@@ -10,11 +10,11 @@ QUIET = @
 endif
 
 build:
-	git clone git@github.com:highercomve/highercomve.github.io.git dist; mkdir tmp; curl https://github.com/multiarch/qemu-user-static/releases/download/v2.12.0-1/qemu-arm-static > tmp/qemu-arm-static; chmod a+x tmp/qemu-arm-static
+	git clone git@github.com:highercomve/highercomve.github.io.git dist; mkdir tmp; curl -L https://github.com/multiarch/qemu-user-static/releases/download/v2.12.0-1/qemu-arm-static > tmp/qemu-arm-static; chmod a+x tmp/qemu-arm-static
 	docker build -f Dockerfile.$(CONTAINER_VERSION) --no-cache -t $(CONTAINER_NAME):$(CONTAINER_VERSION) .
 
 export: build
-	$(QUIET)docker rm -f $(CONTAINER_NAME) || true; did=`docker run --name $(CONTAINER_NAME) -t -d $(CONTAINER_NAME):$(CONTAINER_VERSION)`; docker export $$did -o $(EXPORT_PATH)
+	$(QUIET)docker rm -f $(CONTAINER_NAME) || true; did=`docker run --name $(CONTAINER_NAME) -t -d -p 80:80 $(CONTAINER_NAME):$(CONTAINER_VERSION)`; docker export $$did -o $(EXPORT_PATH)
 	$(QUIET)echo "Exported available at: $(EXPORT_PATH)"
 
 $(EXPORT_SQUASH_PATH): export
