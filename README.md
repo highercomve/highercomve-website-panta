@@ -1,4 +1,4 @@
-## BUilding
+## Building
 
 To build this platform for pantavisor follow the following steps on a machine matching
 the architecture you want to build for.
@@ -6,7 +6,7 @@ the architecture you want to build for.
 For example:
 
 ```bash
-make export-squash
+make panta
 ```
 
 If you screen the log output above, you will see that this produced a squashfs ./highercomve-website-panta.ARM32V6.squashfs

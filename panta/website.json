@@ -1,0 +1,1 @@
+{"configs":["lxc-website.config"],"exec":"/sbin/init","name":"website","share":["NETWORK","UTS","IPC"],"type":"lxc"}
